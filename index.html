@@ -1,22 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en"></html>
+
 <head>
   <meta charset="UTF-8">
   <title>Valentine?</title>
   <style>
     body {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: pink;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
-    }
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: pink;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
 
     .box {
-      text-align: center;
-    }
+  width: 90%;
+  max-width: 400px;
+}
 
     h1 {
       font-size: 2.5rem;
@@ -24,13 +28,12 @@
     }
 
     button {
-      padding: 15px 30px;
-      font-size: 18px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      margin: 10px;
-    }
+  width: 100%;
+  max-width: 280px;
+  margin: 8px auto;
+  display: block;
+  font-size: 1rem;
+}
 
     #yesBtn {
       background: red;
@@ -47,14 +50,22 @@
       font-size: 18px;
       color: darkred;
     }
-    #reactionGif {
-  width: 200px;
-  display: none;
-  margin-bottom: 15px;
+ #startGif,
+#reactionGif {
+  max-width: 100%;
+  height: auto;
 }
-.image1{
-    
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  button {
+    font-size: 1rem;
+  }
 }
+
+
   </style>
 </head>
 <body>
@@ -110,6 +121,9 @@
   ];
 
   function noClicked() {
+    if (navigator.vibrate) {
+  navigator.vibrate(200);
+}
   const yesBtn = document.getElementById("yesBtn");
   const noText = document.getElementById("noText");
   const reactionGif = document.getElementById("reactionGif");
@@ -133,14 +147,13 @@
   }
 
   if (count === reactions.length) {
-    yesBtn.style.position = "fixed";
-    yesBtn.style.top = 0;
-    yesBtn.style.left = 0;
-    yesBtn.style.width = "100vw";
-    yesBtn.style.height = "100vh";
-    yesBtn.style.fontSize = "50px";
-    yesBtn.innerText = "YES 💖";
-  }
+  yesBtn.style.position = "fixed";
+  yesBtn.style.inset = "0";   // mobile friendly
+  yesBtn.style.width = "100vw";
+  yesBtn.style.height = "100vh";
+  yesBtn.style.fontSize = "2.5rem";
+  yesBtn.innerText = "YES 💖";
+}
 }
 
   function yesClicked() {

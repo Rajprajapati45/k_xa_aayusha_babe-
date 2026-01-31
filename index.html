@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentine?</title>
+  <style>
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: pink;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .box {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    #yesBtn {
+      background: red;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    #noBtn {
+      background: white;
+    }
+
+    #noText {
+      margin-top: 15px;
+      font-size: 18px;
+      color: darkred;
+    }
+    #reactionGif {
+  width: 200px;
+  display: none;
+  margin-bottom: 15px;
+}
+.image1{
+    
+}
+  </style>
+</head>
+<body>
+
+<div class="box">
+
+  <!-- First view gif -->
+  <img 
+    id="startGif" 
+    src="images/1.gif"
+    style="width:220px; margin-bottom:15px;"
+  >
+
+  <!-- Reaction gif (hidden initially) -->
+  <img 
+    id="reactionGif" 
+    src="" 
+    style="width:200px; display:none; margin-bottom:15px;"
+  >
+<div id="noText"></div>
+  <h1 >Will you be my Valentine? 💘</h1>
+
+  <button id="yesBtn" onclick="yesClicked()">Yes 💖</button>
+  <button id="noBtn" onclick="noClicked()">No 💔</button>
+
+  
+</div>
+
+
+<script>
+  let count = 0;
+  const reactions = [
+    {
+      text: "Are you sure? 🥺",
+      gif: "images/2.gif"
+    },
+    {
+      text: "Think again 😢",
+      gif: "images/3.gif"
+    },
+    {
+      text: "Don't break my heart 💔",
+      gif: "images/4.gif"
+    },
+    {
+      text: "Last chance 😭",
+      gif: "images/5.gif"
+    },
+    {
+      text: "Okay… no more no 😤",
+      gif: "images/6.gif"
+    }
+  ];
+
+  function noClicked() {
+  const yesBtn = document.getElementById("yesBtn");
+  const noText = document.getElementById("noText");
+  const reactionGif = document.getElementById("reactionGif");
+  const startGif = document.getElementById("startGif");
+  const question = document.getElementById("question");
+
+  // hide first gif & question
+  startGif.style.display = "none";
+  
+
+  // show reaction gif
+  reactionGif.style.display = "block";
+
+  if (count < reactions.length) {
+    noText.innerText = reactions[count].text;
+    reactionGif.src = reactions[count].gif;
+    count++;
+
+    yesBtn.style.fontSize = (18 + count * 10) + "px";
+    yesBtn.style.padding = (15 + count * 10) + "px";
+  }
+
+  if (count === reactions.length) {
+    yesBtn.style.position = "fixed";
+    yesBtn.style.top = 0;
+    yesBtn.style.left = 0;
+    yesBtn.style.width = "100vw";
+    yesBtn.style.height = "100vh";
+    yesBtn.style.fontSize = "50px";
+    yesBtn.innerText = "YES 💖";
+  }
+}
+
+  function yesClicked() {
+    window.location.href = "yes.html";
+  }
+</script>
+
+</body>
+</html>
